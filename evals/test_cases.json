@@ -1,0 +1,201 @@
+[
+  {
+    "name": "all_positive_reviews",
+    "description": "240 positive stroller reviews ? expect high confidence, non-empty pros, empty cons",
+    "input_file": "data/all_positive.json",
+    "expected": {
+      "min_confidence": 0.6,
+      "max_confidence": null,
+      "expect_pros": true,
+      "expect_cons": false,
+      "expect_hallucination": false,
+      "expect_low_confidence": true,
+      "expect_uncertainty_reason": false,
+      "key_themes": [
+        "smooth",
+        "folding",
+        "storage",
+        "canopy",
+        "comfort"
+      ]
+    }
+  },
+  {
+    "name": "all_negative_reviews",
+    "description": "240 negative baby monitor reviews ? expect high confidence, empty pros, non-empty cons",
+    "input_file": "data/all_negative.json",
+    "expected": {
+      "min_confidence": 0.6,
+      "max_confidence": null,
+      "expect_pros": false,
+      "expect_cons": true,
+      "expect_hallucination": false,
+      "expect_low_confidence": false,
+      "expect_uncertainty_reason": false,
+      "key_themes": [
+        "battery",
+        "signal",
+        "screen",
+        "audio",
+        "support"
+      ]
+    }
+  },
+  {
+    "name": "mixed_reviews",
+    "description": "240 mixed car seat reviews ? expect both pros and cons",
+    "input_file": "data/mixed_reviews.json",
+    "expected": {
+      "min_confidence": 0.5,
+      "max_confidence": null,
+      "expect_pros": true,
+      "expect_cons": true,
+      "expect_hallucination": false,
+      "expect_low_confidence": false,
+      "expect_uncertainty_reason": false,
+      "key_themes": [
+        "safety",
+        "padding",
+        "installation",
+        "weight",
+        "buckle"
+      ]
+    }
+  },
+  {
+    "name": "noisy_spam_reviews",
+    "description": "240 baby swing reviews with some spam/noise ? preprocessing should filter junk",
+    "input_file": "data/noisy_spam.json",
+    "expected": {
+      "min_confidence": null,
+      "max_confidence": null,
+      "expect_pros": true,
+      "expect_cons": true,
+      "expect_hallucination": false,
+      "expect_low_confidence": false,
+      "expect_uncertainty_reason": false,
+      "key_themes": [
+        "motion",
+        "music",
+        "comfort",
+        "motor",
+        "battery"
+      ]
+    }
+  },
+  {
+    "name": "few_reviews",
+    "description": "Only 3 reviews — should trigger low confidence (< 0.5) with uncertainty_reason",
+    "input_file": "data/few_reviews.json",
+    "expected": {
+      "min_confidence": 0.0,
+      "max_confidence": 0.5,
+      "expect_pros": true,
+      "expect_cons": true,
+      "expect_hallucination": false,
+      "expect_low_confidence": true,
+      "expect_uncertainty_reason": true,
+      "key_themes": [
+        "swing",
+        "comfort",
+        "support"
+      ]
+    }
+  },
+  {
+    "name": "conflicting_reviews",
+    "description": "240 high chair reviews that directly contradict each other on the same aspects",
+    "input_file": "data/conflicting_reviews.json",
+    "expected": {
+      "min_confidence": null,
+      "max_confidence": null,
+      "expect_pros": true,
+      "expect_cons": true,
+      "expect_hallucination": false,
+      "expect_low_confidence": false,
+      "expect_uncertainty_reason": false,
+      "key_themes": [
+        "build",
+        "comfort",
+        "assembly",
+        "tray",
+        "safety"
+      ]
+    }
+  },
+  {
+    "name": "duplicate_heavy",
+    "description": "240 diaper bag reviews with repeated themes and enough unique signal",
+    "input_file": "data/duplicate_heavy.json",
+    "expected": {
+      "min_confidence": 0.5,
+      "max_confidence": null,
+      "expect_pros": true,
+      "expect_cons": true,
+      "expect_hallucination": false,
+      "expect_low_confidence": false,
+      "expect_uncertainty_reason": false,
+      "key_themes": [
+        "pockets",
+        "capacity",
+        "zipper",
+        "comfort",
+        "weight"
+      ]
+    }
+  },
+  {
+    "name": "single_review",
+    "description": "Just 1 review — should trigger low confidence due to insufficient data",
+    "input_file": "data/single_review.json",
+    "expected": {
+      "min_confidence": 0.0,
+      "max_confidence": 0.5,
+      "expect_pros": true,
+      "expect_cons": false,
+      "expect_hallucination": false,
+      "expect_low_confidence": true,
+      "expect_uncertainty_reason": true,
+      "key_themes": [
+        "bag",
+        "pockets"
+      ]
+    }
+  },
+  {
+    "name": "multilingual_reviews",
+    "description": "240 English and Arabic reviews about a baby crib",
+    "input_file": "data/multilingual_reviews.json",
+    "expected": {
+      "min_confidence": 0.5,
+      "max_confidence": null,
+      "expect_pros": true,
+      "expect_cons": true,
+      "expect_hallucination": false,
+      "expect_low_confidence": false,
+      "expect_uncertainty_reason": false,
+      "key_themes": [
+        "stability",
+        "height",
+        "design",
+        "assembly",
+        "hardware"
+      ]
+    }
+  },
+  {
+    "name": "empty_after_preprocessing",
+    "description": "All reviews are noise/too short — should raise InsufficientDataError",
+    "input_file": "data/empty_after_preprocessing.json",
+    "expected": {
+      "min_confidence": null,
+      "max_confidence": null,
+      "expect_pros": false,
+      "expect_cons": false,
+      "expect_hallucination": false,
+      "expect_low_confidence": false,
+      "expect_uncertainty_reason": false,
+      "key_themes": []
+    }
+  }
+]
