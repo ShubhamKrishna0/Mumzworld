@@ -22,6 +22,10 @@
 
 ## 🧩 Problem
 
+### Problem Statement
+
+Given up to 200 customer reviews for a single baby or mom product, synthesize them into a structured **Moms Verdict** in both English and Arabic. The output should summarize the overall customer experience, list grounded pros and cons, provide a clear recommendation, and honestly express uncertainty when the reviews are too sparse, noisy, or contradictory.
+
 Customer reviews are messy — duplicates, spam, noise, mixed languages, conflicting opinions. Extracting a trustworthy product verdict from this chaos requires:
 
 - **Grounding** — every claim must trace back to actual reviews
